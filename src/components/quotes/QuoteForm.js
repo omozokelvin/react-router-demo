@@ -1,5 +1,5 @@
 import { Fragment, useRef, useState } from 'react';
-import { Prompt } from 'react-router-dom';
+import { usePrompt } from '../../hooks/use-prompt';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
@@ -30,14 +30,14 @@ const QuoteForm = (props) => {
     setIsEntering(false);
   };
 
-  const promptMessage = (location) => {
-    console.log(location);
-    return 'Are you sure you want to leave, all you entered data will be lost';
-  };
+  usePrompt(
+    'Are you sure you want to leave, all you entered data will be lost',
+    isEntering
+  );
 
   return (
     <Fragment>
-      <Prompt when={isEntering} message={promptMessage} />
+      {/* <Prompt when={isEntering} message={promptMessage} /> */}
 
       <Card>
         <form
